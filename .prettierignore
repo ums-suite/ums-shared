@@ -1,0 +1,7 @@
+dist
+node_modules
+coverage
+.angular
+package-lock.json
+contracts/*.json
+projects/shared/src/lib/api/generated/**

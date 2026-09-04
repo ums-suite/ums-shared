@@ -1,0 +1,27 @@
+name: CI
+
+# Calls ums-devops's reusable Angular workflow (ums-conventions.md: "every repo calls the
+# reusable workflow published from ums-devops - no repo hand-rolls its own pipeline from
+# scratch"), mirroring ums-design-system's own thin ci.yml calling pattern.
+#
+# run-docker-build: false -- ums-shared is a published npm package (a generated API client +
+# generic Angular utilities), never a deployed container image, so the Docker-build/Trivy-scan
+# half of angular-app-ci.yml (gated by run-docker-build) does not apply here.
+#
+# angular-app-ci.yml's own steps are: npm ci, `npm audit --audit-level=high`, `npm run lint`,
+# `npm run format:check`, `npm run stylelint`, `npm run test -- --watch=false
+# --browsers=ChromeHeadless`, `npm run build`. This package has no SCSS/stylesheet layer (no UI,
+# see README "What this package is not"), so `npm run stylelint` is a no-op script here rather
+# than a change to the shared workflow six other repos also consume. There is no Playwright/e2e
+# job (unlike ums-design-system) -- this package ships no UI to visually regression-test.
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+
+jobs:
+  lint-test-build:
+    name: Lint, Test, Scan, Build
+    uses: ums-suite/ums-devops/.github/workflows/angular-app-ci.yml@main
+    with:
+      run-docker-build: false
