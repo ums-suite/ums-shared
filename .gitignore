@@ -3,6 +3,17 @@
 /tmp
 /out-tsc
 /bazel-out
+/.angular/cache
+
+# Portable JDK downloaded locally to run @openapitools/openapi-generator-cli (no system Java in
+# this dev environment) -- never committed, see scripts/generate-client.mjs.
+/.tools
+
+# openapi-generator-cli's own version manifest / config cache -- generator bookkeeping, not part
+# of the actual generated client; written both at the repo root (the CLI's own cache) and inside
+# projects/shared/src/lib/api/generated/ (per-generation metadata), hence unanchored.
+.openapi-generator/
+.openapi-generator-ignore
 
 # Node
 /node_modules

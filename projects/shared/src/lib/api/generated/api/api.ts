@@ -1,0 +1,10 @@
+export * from './audit.service';
+import { AuditApiService } from './audit.service';
+export * from './audit.serviceInterface';
+export * from './identity.service';
+import { IdentityApiService } from './identity.service';
+export * from './identity.serviceInterface';
+export * from './organization.service';
+import { OrganizationApiService } from './organization.service';
+export * from './organization.serviceInterface';
+export const APIS = [AuditApiService, IdentityApiService, OrganizationApiService];
