@@ -69,6 +69,36 @@ describe('authInterceptor', () => {
     req.flush([]);
   });
 
+  it('never attaches a Bearer token to a request targeting a different origin (e.g. a pre-signed upload URL)', () => {
+    tokenStorage.setTokens(initialPair);
+
+    http
+      .put('https://uploads.example-storage.com/bucket/object?X-Amz-Signature=abc', {})
+      .subscribe();
+
+    const req = httpMock.expectOne(
+      'https://uploads.example-storage.com/bucket/object?X-Amz-Signature=abc',
+    );
+    expect(req.request.headers.has('Authorization')).toBeFalse();
+    req.flush({});
+  });
+
+  it('does not attempt a 401-triggered refresh for a third-party-origin request', () => {
+    tokenStorage.setTokens(initialPair);
+    let failed = false;
+
+    http
+      .put('https://uploads.example-storage.com/bucket/object', {})
+      .subscribe({ error: () => (failed = true) });
+
+    httpMock
+      .expectOne('https://uploads.example-storage.com/bucket/object')
+      .flush({}, { status: 401, statusText: 'Unauthorized' });
+
+    // httpMock.verify() in afterEach fails if a refresh call was made -- this asserts none was.
+    expect(failed).toBeTrue();
+  });
+
   it('never attaches a Bearer token to the login endpoint', () => {
     http.post('http://localhost:8080/api/v1/identity/auth/login', {}).subscribe();
 
