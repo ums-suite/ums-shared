@@ -9,6 +9,7 @@
  */
 
 
-export interface DeactivateRequestBodyVersion { 
+export interface InitiatePaymentHttpRequest { 
+    invoiceId: string;
 }
 

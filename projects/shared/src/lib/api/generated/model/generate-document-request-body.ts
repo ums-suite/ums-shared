@@ -9,6 +9,11 @@
  */
 
 
-export interface CreateRoomRequestCapacity { 
+export interface GenerateDocumentRequestBody { 
+    ownerId: string;
+    documentType: string;
+    sourceReferenceId: string;
+    fields: { [key: string]: string; };
+    language: string | null;
 }
 

@@ -13,5 +13,6 @@ export interface CreateRoleRequest {
     name: string;
     description: string | null;
     permissions: Array<string>;
+    requiresMfa?: boolean;
 }
 

@@ -7,12 +7,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { DeactivateRequestBodyVersion } from './deactivate-request-body-version';
+import { ApiV1CareerEmployersIdArchivePostVersionParameter } from './api-v1-career-employers-id-archive-post-version-parameter';
 
 
 export interface UpdateDepartmentRequest { 
     name: string;
-    version: DeactivateRequestBodyVersion;
+    version: ApiV1CareerEmployersIdArchivePostVersionParameter;
     translations: { [key: string]: string; } | null;
 }
 

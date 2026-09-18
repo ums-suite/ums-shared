@@ -7,13 +7,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { CreateRoomRequestCapacity } from './create-room-request-capacity';
+import { AddQuestionRequestCorrectOptionIndex } from './add-question-request-correct-option-index';
 
 
 export interface CreateRoomRequest { 
     buildingId: string;
     name: string;
-    capacity: CreateRoomRequestCapacity | null;
+    capacity: AddQuestionRequestCorrectOptionIndex | null;
     roomType: string | null;
 }
 
