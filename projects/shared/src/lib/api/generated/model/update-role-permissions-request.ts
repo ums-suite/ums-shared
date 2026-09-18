@@ -11,5 +11,6 @@
 
 export interface UpdateRolePermissionsRequest { 
     permissions: Array<string>;
+    requiresMfa?: boolean | null;
 }
 

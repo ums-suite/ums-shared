@@ -15,9 +15,12 @@ import { ApiV1IdentityUsersGetSkipParameter } from '../model/models';
 import { AssignRoleRequest } from '../model/models';
 import { ChangeUserStatusRequestBody } from '../model/models';
 import { CreateRoleRequest } from '../model/models';
+import { ForgotPasswordRequestBody } from '../model/models';
 import { LoginRequestBody } from '../model/models';
+import { MfaVerifyRequestBody } from '../model/models';
 import { ProvisionUserRequest } from '../model/models';
 import { RefreshRequestBody } from '../model/models';
+import { ResetPasswordRequestBody } from '../model/models';
 import { UpdateRolePermissionsRequest } from '../model/models';
 
 
@@ -50,6 +53,37 @@ export interface IdentityApiServiceInterface {
      * @endpoint post /api/v1/identity/auth/logout
      */
     apiV1IdentityAuthLogoutPost(extraHttpRequestParams?: any): Observable<{}>;
+
+    /**
+     * 
+     * 
+     * @endpoint post /api/v1/identity/auth/mfa/enroll
+     */
+    apiV1IdentityAuthMfaEnrollPost(extraHttpRequestParams?: any): Observable<{}>;
+
+    /**
+     * 
+     * 
+     * @endpoint post /api/v1/identity/auth/mfa/verify
+     * @param mfaVerifyRequestBody 
+     */
+    apiV1IdentityAuthMfaVerifyPost(mfaVerifyRequestBody: MfaVerifyRequestBody, extraHttpRequestParams?: any): Observable<{}>;
+
+    /**
+     * 
+     * 
+     * @endpoint post /api/v1/identity/auth/password/forgot
+     * @param forgotPasswordRequestBody 
+     */
+    apiV1IdentityAuthPasswordForgotPost(forgotPasswordRequestBody: ForgotPasswordRequestBody, extraHttpRequestParams?: any): Observable<{}>;
+
+    /**
+     * 
+     * 
+     * @endpoint post /api/v1/identity/auth/password/reset
+     * @param resetPasswordRequestBody 
+     */
+    apiV1IdentityAuthPasswordResetPost(resetPasswordRequestBody: ResetPasswordRequestBody, extraHttpRequestParams?: any): Observable<{}>;
 
     /**
      * 
